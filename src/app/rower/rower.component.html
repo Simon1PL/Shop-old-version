@@ -1,5 +1,24 @@
-<div class="rowery-lista-rower-nazwa">{{this.rower.nazwa | uppercase}}</div>
-<div class="rowery-lista-rower-cena">{{this.rower.cena}}</div>
-<div class="rowery-lista-rower-ilosc">{{this.ilosc}}</div>
-<div class="rowery-lista-rower-opis" *ngFor="let i of this.rower.opis">{{i[0] | uppercase}}: {{i[1]}}</div>
-<img src={{this.rower.urlZdjecia}} alt="Zdjęcie" class="rowery-lista-rower-zdjecie">
+<div class="nazwa">{{this.rower.nazwa | uppercase}}</div>
+<div class="informacje">
+    <img src={{this.rower.urlZdjecia}} alt="Zdjęcie" class="informacje-zdjecie">
+    <div class="informacje-cena">{{this.rower.cena}}zł</div>
+</div>
+<div class="koszyk"  *ngIf="this.rower.ilosc>0; else niedostepne">
+    <div class="koszyk-dostepny">
+        Dostępne egzemplarze: {{this.rower.ilosc}}
+    </div>
+    <div class="koszyk-usun" (click)="dodaj($event, -1)" [ngClass]="{'wylaczony-przycisk': iloscWKoszyku===0, 'disabled': iloscWKoszyku===0}">-</div>
+    <div class="koszyk-iloscWKoszyku">W koszyku: {{this.iloscWKoszyku}}</div>
+    <div class="koszyk-dodaj" (click)="dodaj($event, 1)" [ngClass]="{'wylaczony-przycisk': rower.ilosc===iloscWKoszyku}">+</div>
+</div>
+<ng-template #niedostepne>
+    <div class="koszyk-niedostepny">
+        Produkt chwilowo niedostępny
+    </div>
+</ng-template>
+<div class="specyfikacja">
+    <div class="specyfikacja-linia" *ngFor="let i of this.rower.opis">
+        <div class="specyfikacja-linia-czesc">{{i[0] | uppercase}}:</div>
+        <div>{{i[1]}}</div>
+    </div>
+</div>

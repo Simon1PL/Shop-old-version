@@ -7,7 +7,7 @@ import { Rower } from './models/rower';
 export class ZawieraWNazwiePipe implements PipeTransform {
 
   transform(rowery: Rower[], arg: string): Rower[] {
-    return (rowery.filter(rower => rower.nazwa.toLowerCase().includes(arg.toLowerCase())));
+    return arg === '' ? rowery : (rowery.filter(rower => rower.nazwa.toLowerCase().includes(arg.toLowerCase())));
   }
 
 }

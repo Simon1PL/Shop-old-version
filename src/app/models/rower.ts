@@ -3,4 +3,5 @@ export interface Rower {
     cena: number;
     opis: [string, string][];
     urlZdjecia: string;
+    ilosc: number;
 }

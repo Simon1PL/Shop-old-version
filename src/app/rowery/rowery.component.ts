@@ -4,7 +4,7 @@ import { Rower } from '../models/rower';
 @Component({
   selector: 'app-rowery',
   templateUrl: './rowery.component.html',
-  styleUrls: ['./rowery.component.css']
+  styleUrls: ['./rowery.component.scss']
 })
 
 export class RoweryComponent implements OnInit {
@@ -15,10 +15,12 @@ export class RoweryComponent implements OnInit {
   ngOnInit(): void {
     // tslint:disable-next-line: forin
     for (const numerRoweru in nazwy) {
-        this.rowery.push({nazwa: nazwy[numerRoweru], cena: ceny[numerRoweru], opis: opisy[numerRoweru], urlZdjecia: zdjecia[numerRoweru]});
+        // tslint:disable-next-line: max-line-length
+        this.rowery.push({nazwa: nazwy[numerRoweru], cena: ceny[numerRoweru], opis: opisy[numerRoweru], urlZdjecia: zdjecia[numerRoweru], ilosc: 3 });
     }
     for (let index = 0; index < 10; index++) {
-      this.rowery.push({nazwa: `ROWER${index}`, cena: 1700, opis: stwórzOpis(index), urlZdjecia: Zdjecie });
+      // tslint:disable-next-line: max-line-length
+      this.rowery.push({nazwa: `B\'TWIN ${index + 1}`, cena: 1700, opis: stwórzOpis(index), urlZdjecia: Zdjecie, ilosc: Math.max(index - 2, 0) });
     }
   }
 
@@ -28,7 +30,7 @@ export class RoweryComponent implements OnInit {
 const Zdjecie = 'https://skoda-wlc.s3.amazonaws.com/5/2017/10/big_3dc06ceb-e8d5-4315-b53f-ec20c6c4e607.jpg';
 
 function stwórzOpis(nr: number): [string, string][] {
-  return [['RAMA', `B\'TWIN${nr}`],
+  return [['RAMA', `B\'TWIN ${nr}`],
   ['ROK', '2020'],
   ['ROZMIAR RAMY', 'XS, S, M, L'],
   ['KOLOR', 'BLACK/RED/GREEN'],

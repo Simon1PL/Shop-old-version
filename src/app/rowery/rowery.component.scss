@@ -1,0 +1,26 @@
+.rowery {
+    text-align: center;
+    font-size: 23px;
+    font-family: 'Open Sans', sans-serif;
+
+        &-title {
+            font-family: 'Alfa Slab One', cursive;
+            font-size: 70px;
+            font-weight: 700;
+            margin: 50px 0 30px;
+        }
+
+        &-lista {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+
+            &-rower {
+                margin: calc((100% - 90vw - 5px)/4) 0; //same as margin left/right
+                width: 45vw;
+                border: 1px black solid;
+                display: flex;
+                flex-direction: column;
+            }
+        }
+}

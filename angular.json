@@ -119,6 +119,12 @@
           }
         }
       }
-    }},
-  "defaultProject": "Rowery"
+    }
+  },
+  "defaultProject": "Rowery",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }
