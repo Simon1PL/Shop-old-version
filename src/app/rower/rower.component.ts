@@ -29,4 +29,14 @@ export class RowerComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  cenaToString(cena: number): string {
+    let result = String(cena);
+    let i = 3;
+    while (result.length > i) {
+      result = result.slice(0, result.length - i) + ' ' + result.slice(result.length - i);
+      i += 4;
+    }
+    return result;
+  }
+
 }

@@ -9,18 +9,41 @@ import { Rower } from '../models/rower';
 
 export class RoweryComponent implements OnInit {
   rowery: Rower[] = [];
+  nowyRower = {nazwa: '', cena: 0, opis: [], urlZdjecia: '', ilosc: 0 };
+  dodajRower = true;
+  opis = '';
 
   constructor() { }
+
+  ustawNazwe() {}
+  ustawCene() {}
+  ustawOpis() {}
+  ustawUrlZdjecia() {}
+  ustawIlosc() {}
+  dodajModel(rower: Rower) {
+    this.nowyRower.opis = this.opis.split('\n');
+    console.log(this.nowyRower.opis);
+    this.rowery.push(rower);
+  }
 
   ngOnInit(): void {
     // tslint:disable-next-line: forin
     for (const numerRoweru in nazwy) {
-        // tslint:disable-next-line: max-line-length
-        this.rowery.push({nazwa: nazwy[numerRoweru], cena: ceny[numerRoweru], opis: opisy[numerRoweru], urlZdjecia: zdjecia[numerRoweru], ilosc: 3 });
+      // tslint:disable-next-line: max-line-length
+      this.rowery.push({nazwa: nazwy[numerRoweru], cena: ceny[numerRoweru], opis: opisy[numerRoweru], urlZdjecia: zdjecia[numerRoweru], ilosc: 3 });
     }
     for (let index = 0; index < 10; index++) {
       // tslint:disable-next-line: max-line-length
       this.rowery.push({nazwa: `B\'TWIN ${index + 1}`, cena: 1700, opis: stwórzOpis(index), urlZdjecia: Zdjecie, ilosc: Math.max(index - 2, 0) });
+    }
+  }
+
+  kolorExtremum(rower: Rower) {
+    if (rower.cena === Math.min(...this.rowery.map(rowr => rowr.cena))) {
+      return 'red';
+    }
+    if (rower.cena === Math.max(...this.rowery.map(rowr => rowr.cena))) {
+      return 'green';
     }
   }
 

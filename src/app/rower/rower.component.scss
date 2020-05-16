@@ -13,6 +13,10 @@
         border-radius: 50%;
         width: 80%;
         max-height: calc(45vw*8/10/1.6);
+
+        @media(max-width: 800px) {
+            max-height: calc(45vw);
+        }
     }
     
     &-cena {
@@ -46,12 +50,14 @@
         cursor: pointer;
         color: white;
         background-color: black;
-        width: 40px;
-        height: 40px;
+        width: 35px;
+        height: 35px;
         display: flex;
         align-items: center;
         justify-content: center;
         user-select: none;
+        padding: 5px;
+        overflow: hidden;
     }
 
 }
@@ -76,6 +82,10 @@
 }
 
 .wylaczony-przycisk {
-    background-color: rgb(83, 83, 83);
+    background-color: rgba(116, 116, 116, 0.342) !important;
     cursor: default;
+}
+
+.kolor-czerwony {
+    color: rgb(202, 7, 7);
 }

@@ -1,7 +1,22 @@
 <div class="rowery">
     <p class="rowery-title">Rowery MTB:</p>
+    <div class="rowery-ilosc-modeli" [ngStyle]="{backgroundColor: rowery.length>20 ? 'rgb(68, 158, 68)' : 'rgb(202, 7, 7)'}">
+        W ofercie: {{rowery.length}} modeli
+        <div class="rowery-dodaj-rower-button" (click)="dodajRower = true"><span>Dodaj model</span></div>
+    </div>
+    <div class="rowery-dodaj-rower" [ngStyle]="{visibility: dodajRower ? 'visible' : 'hidden'}" (click)="dodajRower = false">
+        <div class="rowery-dodaj-rower-formularz" (click)="$event.stopPropagation()">
+            <input placeholder="nazwa" (input)="ustawNazwe()">
+            <input type="number" placeholder="cena" (input)="ustawCene()">
+            <input placeholder="ilosc dostepnych egzemplarzy" (input)="ustawIlosc()">
+            <input placeholder="urlZdjecia" (input)="ustawUrlZdjecia()">
+            <input placeholder="opis" (input)="ustawOpis()">
+            <input placeholder="opis" (input)="ustawOpis()">
+            <div class="rowery-dodaj-rower-formularz-button" (click)="dodajModel(nowyRower)"><span>Dodaj model</span></div>
+        </div>
+    </div>
     <div class="rowery-lista">
-        <app-rower *ngFor="let rower of this.rowery | zawieraWNazwie:''" [rower]="rower" class="rowery-lista-rower">
+        <app-rower *ngFor="let rower of this.rowery | zawieraWNazwie:''" [rower]="rower" class="rowery-lista-rower" [ngStyle]="{borderColor: kolorExtremum(rower), borderWidth: kolorExtremum(rower) ? '2px' : null}">
         </app-rower>
     </div>
 </div>

@@ -3,11 +3,165 @@
     font-size: 23px;
     font-family: 'Open Sans', sans-serif;
 
+    @media(max-width: 1060px) {
+        font-size: 15px;
+    }
+
         &-title {
             font-family: 'Alfa Slab One', cursive;
             font-size: 70px;
             font-weight: 700;
             margin: 50px 0 30px;
+
+            @media(max-width: 320px) {
+                font-size: 45px;
+            }
+        }
+
+        &-ilosc-modeli {
+            font-family: 'Alfa Slab One', cursive;
+            font-size: 35px;
+            font-weight: 200;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+
+            @media(max-width: 976px) {
+                font-size: 20px;
+                justify-content: left;
+            }
+        }
+
+        &-dodaj-rower-button {
+            color: white;
+            background-color: black;
+            font-size: 30px;
+            padding: 10px;
+            position: absolute;
+            right: 50px;
+            user-select: none;
+            cursor: pointer;
+
+            @media(max-width: 1060px) {
+                font-size: 20px;
+                right: 20px;
+            }
+
+            @media(max-width: 460px) {
+                position: static;
+                margin: auto;
+            }
+
+            & span {
+                display: inline-block;
+                transition: transform 0.2s ease-in-out;
+            }
+            &:hover span{
+                transform: scale(1.02);
+            }
+        }
+
+        &-dodaj-rower {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            background-color: rgba(53, 53, 53, 0.965);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            cursor: pointer;
+
+            &-formularz {
+                margin: auto;
+                height: 80%;
+                width: 80%;
+                background-color: black;
+                position: relative;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                border-radius: 10px;
+                -webkit-box-shadow: inset 0px 0px 212px -67px rgba(92,92,92,0.67),  0px 0px 201px -30px rgba(0,0,0,1);
+                -moz-box-shadow: inset 0px 0px 212px -67px rgba(92,92,92,0.67),  0px 0px 201px -30px rgba(0,0,0,1);
+                box-shadow: inset 0px 0px 212px -67px rgba(92,92,92,0.67),  0px 0px 201px -30px rgba(0,0,0,1);
+                padding: 20px;
+                font-family: 'Alfa Slab One', cursive;
+                cursor: default;
+
+                & input {
+                    margin: auto 20px;
+                    padding: 10px;
+                    width: 90%;
+                    height: 70px;
+                    background-color: white;
+                    box-sizing: border-box;
+                    text-align: center; 
+                    border-radius: 7px;
+                    font-size: 25px;
+                    font-family: 'Alfa Slab One', cursive;
+                    cursor: pointer;
+
+                    @media(max-height: 680px) {
+                        height: 40px;
+                        font-size: 20px;
+                    }
+
+                    @media(max-height: 400px) {
+                        height: 30px;
+                    }
+
+                    &::-webkit-inner-spin-button, 
+                    &::-webkit-outer-spin-button { 
+                    -webkit-appearance: none; 
+                    }
+
+                    &:nth-of-type(1) {
+                        width: 50%;
+                        margin: auto 20%;
+                        @media(max-width: 520px) {
+                            margin: auto;
+                            width: 90%;
+                        }
+                    }
+
+                    &:nth-of-type(2), &:nth-of-type(3) {
+                        width: 20%;
+                        @media(max-width: 520px) {
+                            width: 90%;
+                        }
+                    }
+
+                }
+
+                &-button {
+                    background-color: white;
+                    color: black;
+                    display: flex;
+                    align-items: center;
+                    padding: 10px;
+                    user-select: none;
+                    cursor: pointer;
+                    border-radius: 5px;
+                    height: 50px;
+                    font-size: 30px;
+                    margin: auto;
+                    box-sizing: border-box;
+                    
+                    & span {
+                        display: inline-block;
+                        transition: transform 0.2s ease-in-out;
+                    }
+                    &:hover span{
+                        transform: scale(1.02);
+                    }
+                }
+            }
         }
 
         &-lista {
@@ -21,6 +175,10 @@
                 border: 1px black solid;
                 display: flex;
                 flex-direction: column;
+
+                @media(max-width: 800px) {
+                    width: 90vw;
+                }
             }
         }
 }
