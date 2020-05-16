@@ -2,21 +2,44 @@
     <p class="rowery-title">Rowery MTB:</p>
     <div class="rowery-ilosc-modeli" [ngStyle]="{backgroundColor: rowery.length>20 ? 'rgb(68, 158, 68)' : 'rgb(202, 7, 7)'}">
         W ofercie: {{rowery.length}} modeli
-        <div class="rowery-dodaj-rower-button" (click)="dodajRower = true"><span>Dodaj model</span></div>
+        <div class="rowery-dodaj-rower-button button" (click)="dodajRower = true"><span>Dodaj model</span></div>
     </div>
     <div class="rowery-dodaj-rower" [ngStyle]="{visibility: dodajRower ? 'visible' : 'hidden'}" (click)="dodajRower = false">
+        <!---------------------FORMULARZ---------------------->
         <div class="rowery-dodaj-rower-formularz" (click)="$event.stopPropagation()">
-            <input placeholder="nazwa" (input)="ustawNazwe()">
-            <input type="number" placeholder="cena" (input)="ustawCene()">
-            <input placeholder="ilosc dostepnych egzemplarzy" (input)="ustawIlosc()">
-            <input placeholder="urlZdjecia" (input)="ustawUrlZdjecia()">
-            <input placeholder="opis" (input)="ustawOpis()">
-            <input placeholder="opis" (input)="ustawOpis()">
-            <div class="rowery-dodaj-rower-formularz-button" (click)="dodajModel(nowyRower)"><span>Dodaj model</span></div>
+            <input placeholder="nazwa" [(ngModel)]="nowyRower.nazwa">
+            <input type="number" placeholder="cena" (input)="ustawCene($event)">
+            <input placeholder="ilosc dostepnych egzemplarzy" (input)="ustawIlosc($event)">
+            <div class="rowery-dodaj-rower-formularz-grid">
+                <input placeholder="urlZdjecia" [(ngModel)]="nowyRower.urlZdjecia" class="rowery-dodaj-rower-formularz-grid-zdjecie">
+                <div class="rowery-dodaj-rower-formularz-grid-aktualny-opis">
+                    Opis:
+                    <div class="rowery-dodaj-rower-formularz-grid-aktualny-opis-linia" *ngFor="let i of this.nowyRower.opis">
+                        <div class="rowery-dodaj-rower-formularz-grid-aktualny-opis-linia-czesc">{{i[0] | uppercase}}:</div>
+                        <div>{{i[1]}}</div>
+                    </div>
+                </div>
+                <input placeholder="czesc" list="przyklady" [(ngModel)]="czesc" class="rowery-dodaj-rower-formularz-grid-czesc">
+                <datalist id="przyklady">
+                    <option>Przerzutka przednia</option>
+                    <option>Przerzutka tył</option>
+                    <option>Rozmiar ramy</option>
+                    <option>Kolor</option>
+                    <option>Waga</option>
+                    <option>Rok produkcji</option>
+                    <option>Widelec</option>
+                    <option>Opony</option>
+                    <option>Hamulce</option>
+                </datalist>
+                <input placeholder="model/opis czesci" [(ngModel)]="opisCzesci" class="rowery-dodaj-rower-formularz-grid-opisCzesci">
+                <div class="dodaj-do-opisu" (click)="dodajDoOpisu()" class="rowery-dodaj-rower-formularz-grid-button button"><span>Dodaj do opisu</span></div>
+                <div class="rowery-dodaj-rower-formularz-grid-button2 button" (click)="dodajModel()"><span>Dodaj model</span></div>
+            </div>
         </div>
     </div>
+    <input class="rowery-search" placeholder="Search..." (input)="dodajWyszukiwanaFraze($event)">
     <div class="rowery-lista">
-        <app-rower *ngFor="let rower of this.rowery | zawieraWNazwie:''" [rower]="rower" class="rowery-lista-rower" [ngStyle]="{borderColor: kolorExtremum(rower), borderWidth: kolorExtremum(rower) ? '2px' : null}">
+        <app-rower *ngFor="let rower of this.rowery | zawieraWNazwie: wyszukiwanaFraza" [rower]="rower" class="rowery-lista-rower" [ngStyle]="{borderColor: kolorExtremum(rower), borderWidth: kolorExtremum(rower) ? '3px' : null}">
         </app-rower>
     </div>
 </div>

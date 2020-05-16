@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Rower } from '../models/rower';
 
 @Component({
@@ -9,21 +9,43 @@ import { Rower } from '../models/rower';
 
 export class RoweryComponent implements OnInit {
   rowery: Rower[] = [];
-  nowyRower = {nazwa: '', cena: 0, opis: [], urlZdjecia: '', ilosc: 0 };
-  dodajRower = true;
-  opis = '';
+  nowyRower = {nazwa: '', cena: 0, opis: [], urlZdjecia: 'https://images.morele.net/i1064/5808267_0_i1064.jpg', ilosc: 0 };
+  dodajRower = false;
+  opisCzesci = '';
+  czesc = '';
+  wyszukiwanaFraza = '';
+
+  dodajWyszukiwanaFraze(event) {
+    this.wyszukiwanaFraza = event.target.value;
+  }
+
+  dodajModel() {
+    this.rowery.push(this.nowyRower);
+    this.opisCzesci = '';
+    this.czesc = '';
+    this.dodajRower = false;
+    this.nowyRower = {nazwa: '', cena: 0, opis: [], urlZdjecia: 'https://images.morele.net/i1064/5808267_0_i1064.jpg', ilosc: 0 };
+  }
 
   constructor() { }
 
-  ustawNazwe() {}
-  ustawCene() {}
-  ustawOpis() {}
-  ustawUrlZdjecia() {}
-  ustawIlosc() {}
-  dodajModel(rower: Rower) {
-    this.nowyRower.opis = this.opis.split('\n');
-    console.log(this.nowyRower.opis);
-    this.rowery.push(rower);
+  ustawCene(event) {
+    if (Number(event.target.value) >= 0) {
+      this.nowyRower.cena = event.target.value;
+    }
+  }
+  ustawUrlZdjecia(event) {
+    this.nowyRower.urlZdjecia = event.target.value;
+  }
+  ustawIlosc(event) {
+    if (Number(event.target.value) >= 0) {
+      this.nowyRower.ilosc = event.target.value;
+    }
+  }
+  dodajDoOpisu() {
+    this.nowyRower.opis.push([this.czesc, this.opisCzesci]);
+    this.czesc = '';
+    this.opisCzesci = '';
   }
 
   ngOnInit(): void {
@@ -43,10 +65,18 @@ export class RoweryComponent implements OnInit {
       return 'red';
     }
     if (rower.cena === Math.max(...this.rowery.map(rowr => rowr.cena))) {
-      return 'green';
+      return 'rgb(0, 165, 0)';
     }
   }
 
+  @HostListener('document:keyup', ['$event'])
+  onKeyUp(ev: KeyboardEvent) {
+    const elemen = ev.key;
+    if (elemen === 'Enter' && this.dodajRower) {
+      this.dodajModel();
+    }
+  }
+  
 }
 
 // ------------------------------------------DANE ROWERÓW(STORAGE)------------------------------------------ //
