@@ -1,0 +1,5 @@
+<div class="rowery-lista-rower-nazwa">{{this.rower.nazwa | uppercase}}</div>
+<div class="rowery-lista-rower-cena">{{this.rower.cena}}</div>
+<div class="rowery-lista-rower-ilosc">{{this.ilosc}}</div>
+<div class="rowery-lista-rower-opis" *ngFor="let i of this.rower.opis">{{i[0] | uppercase}}: {{i[1]}}</div>
+<img src={{this.rower.urlZdjecia}} alt="Zdjęcie" class="rowery-lista-rower-zdjecie">

@@ -1,1 +1,7 @@
-<p>rowery works!</p>
+<div class="rowery">
+    <p class="rowery-title">Rowery MTB:</p>
+    <div class="rowery-lista">
+        <app-rower *ngFor="let rower of this.rowery | zawieraWNazwie:'big'" [rower]="rower">
+        </app-rower>
+    </div>
+</div>

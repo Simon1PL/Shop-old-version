@@ -3,10 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { RoweryComponent } from './rowery/rowery.component';
+import { ZawieraWNazwiePipe } from './zawiera-wnazwie.pipe';
+import { RowerComponent } from './rower/rower.component';
 
 @NgModule({
   declarations: [
-    RoweryComponent
+    RoweryComponent,
+    ZawieraWNazwiePipe,
+    RowerComponent
   ],
   imports: [
     BrowserModule,
