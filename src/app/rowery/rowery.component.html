@@ -19,7 +19,7 @@
                         <div>{{i[1]}}</div>
                     </div>
                 </div>
-                <input placeholder="czesc" list="przyklady" [(ngModel)]="czesc" class="rowery-dodaj-rower-formularz-grid-czesc">
+                <input placeholder="czesc" list="przyklady" #czesc class="rowery-dodaj-rower-formularz-grid-czesc">
                 <datalist id="przyklady">
                     <option>Przerzutka przednia</option>
                     <option>Przerzutka tył</option>
@@ -31,8 +31,8 @@
                     <option>Opony</option>
                     <option>Hamulce</option>
                 </datalist>
-                <input placeholder="model/opis czesci" [(ngModel)]="opisCzesci" class="rowery-dodaj-rower-formularz-grid-opisCzesci">
-                <div class="dodaj-do-opisu" (click)="dodajDoOpisu()" class="rowery-dodaj-rower-formularz-grid-button button"><span>Dodaj do opisu</span></div>
+                <input placeholder="model/opis czesci" #opisCzesci class="rowery-dodaj-rower-formularz-grid-opisCzesci">
+                <div class="dodaj-do-opisu" (click)="dodajDoOpisu(czesc.value, opisCzesci.value); czesc.value = ''; opisCzesci.value = ''" class="rowery-dodaj-rower-formularz-grid-button button"><span>Dodaj do opisu</span></div>
                 <div class="rowery-dodaj-rower-formularz-grid-button2 button" (click)="dodajModel()"><span>Dodaj model</span></div>
             </div>
         </div>
