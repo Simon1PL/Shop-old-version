@@ -7,7 +7,7 @@
     <div class="koszyk-dostepny" [ngClass]="{'kolor-czerwony': this.rower.ilosc<4}">
         Dostępne egzemplarze: {{this.rower.ilosc}}
     </div>
-    <div class="koszyk-usun" (click)="dodaj($event, -1)" [ngClass]="{'wylaczony-przycisk': iloscWKoszyku===0, 'disabled': iloscWKoszyku===0}">
+    <div class="koszyk-usun" (click)="dodaj($event, -1)" [ngClass]="{'wylaczony-przycisk': !iloscWKoszyku, 'disabled': !iloscWKoszyku}">
         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
             width="60" height="60"
             viewBox="0 0 172 172"
